@@ -21,6 +21,11 @@ namespace NetRSSParser.GoogleNews
             get
             { return rss.Link; }
         }
+        public static string Language
+        {
+            get
+            { return rss.Language; }
+        }
         public static string URL
         {
             get

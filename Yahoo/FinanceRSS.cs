@@ -6,30 +6,39 @@ using System.Threading.Tasks;
 
 using System.Xml;
 
-namespace NetRSSParser.GoogleNews
+namespace NetRSSParser.Yahoo
 {
-    public class RSS
+    public class FinanceRSS
     {
         //Variables
+        private const string BASE_URL = "http://finance.yahoo.com/rss/headline?s=";
+
         public string Title { get; set; }
         public string Link { get; set; }
         public string Language { get; set; }
-        public string URL { get; set; }
-        public string PublishedDate { get; set; }
+        public string Description { get; set; }
         public string LastBuildDate { get; set; }
+        public string URL { get; set; }
 
         public List<string> Titles { get; set; }
-        public List<string> URLs{ get; set; }
+        public List<string> URLs { get; set; }
+        public List<string> Descriptions { get; set; }
+        public List<string> PublishedDates { get; set; }
         public List<string> TitlesURLs { get; set; }
 
+        public List<Item> Items { get; set; }
+
         //Constructors
-        public RSS(string URL)
+        public FinanceRSS(string CompanySymbol)
         {
-            this.URL = URL;
+            this.URL = BASE_URL + CompanySymbol.Trim().ToLower();
             Titles = new List<string>();
             URLs = new List<string>();
+            Descriptions = new List<string>();
+            PublishedDates = new List<string>();
             TitlesURLs = new List<string>();
 
+            Items = new List<Item>();
             try
             {
                 ParseRSS();
@@ -49,8 +58,8 @@ namespace NetRSSParser.GoogleNews
                 XmlNode TL = rssXmlDoc.SelectSingleNode("rss/channel");
                 this.Title = TL.SelectSingleNode("title").InnerText.Trim();
                 this.Link = TL.SelectSingleNode("link").InnerText.Trim();
+                this.Description = TL.SelectSingleNode("description").InnerText.Trim();
                 this.Language = TL.SelectSingleNode("language").InnerText.Trim();
-                this.PublishedDate = TL.SelectSingleNode("pubDate").InnerText.Trim();
                 this.LastBuildDate = TL.SelectSingleNode("lastBuildDate").InnerText.Trim();
 
                 // Parse the Items in the RSS file
@@ -66,21 +75,45 @@ namespace NetRSSParser.GoogleNews
                     string link = rssSubNode != null ? rssSubNode.InnerText : "";
                     link = ParseLink(link);
 
+                    //Description
+                    rssSubNode = rssNode.SelectSingleNode("description");
+                    string description = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                    //Published date
+                    rssSubNode = rssNode.SelectSingleNode("pubDate");
+                    string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
+
                     Titles.Add(title);
                     URLs.Add(link);
+                    Descriptions.Add(description);
+                    PublishedDates.Add(pubDate);
                     TitlesURLs.Add(title + " - " + link);
+
+                    Items.Add(new Item(title, link, description, pubDate));
                 }
             }
             catch (Exception e) { throw e; }
         }
         private string ParseLink(string Link)
         {
-            foreach (string s in Link.Split(new string[] { "url=" }, StringSplitOptions.None))
+            return Link.Split(new string[] { "*" }, StringSplitOptions.None)[1].Trim();
+        }
+
+        //Item
+        public class Item
+        {
+            public string Title { get; set; }
+            public string Link { get; set; }
+            public string Description { get; set; }
+            public string PublishedDate { get; set; }
+
+            public Item(string Title, string Link, string Description, string PublishedDate)
             {
-                if (!s.Contains("news.google.com"))
-                    return s;
+                this.Title = Title;
+                this.Link = Link;
+                this.Description = Description;
+                this.PublishedDate = PublishedDate;
             }
-            return "";
         }
     }
 }
