@@ -28,7 +28,11 @@ namespace NetRSSParser.Yahoo
 
         public List<Item> Items { get; set; }
 
-        //Constructors
+        /// <summary>
+        /// Initializes a new instance of a Yahoo Finance RSS requested based on a company's stock name or symbol. For example
+        /// Microsoft's symbol would be 'msft'
+        /// </summary>
+        /// <param name="CompanySymbol">Based on a company's stock name or symbol. For example, Microsoft's symbol would be 'msft'</param>
         public FinanceRSS(string CompanySymbol)
         {
             this.URL = BASE_URL + CompanySymbol.Trim().ToLower();

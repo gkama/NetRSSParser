@@ -17,7 +17,11 @@ namespace NetRSSParser
 
             RSS rsss = new RSS("https://feeds.finance.yahoo.com/rss/2.0/headline?s=msft&region=US&lang=en-US");
 
-            Console.WriteLine(GoogleNews.TopStories.Title);
+            DateTime FromDate = new DateTime(2017, 2, 1);
+            DateTime ToDate = new DateTime(2017, 2, 10);
+            Yahoo.StockQuote sq = new Yahoo.StockQuote("yhoo", FromDate, ToDate, "w");
+            
+            Console.WriteLine("");
         }
     }
 }
