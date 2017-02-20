@@ -64,8 +64,8 @@ namespace NetRSSParser.Yahoo
 
             this.ResolutionOfData = ResolutionOfData;
 
-            this.URL = BASE_URL + this.Symbol + "&a=" + this.FromDay + "&b=" + this.FromMonth + "&c=" + this.FromYear +
-                "&d=" + this.ToDay + "&e=" + this.ToMonth + "&f=" + this.ToYear + "&g=" + this.ResolutionOfData + "&ignore=.csv";
+            this.URL = BASE_URL + this.Symbol + "&a=" + this.FromMonth + "&b=" + this.FromDay + "&c=" + this.FromYear +
+                "&d=" + this.ToMonth + "&e=" + this.ToDay + "&f=" + this.ToYear + "&g=" + this.ResolutionOfData + "&ignore=.csv";
 
             try
             {
