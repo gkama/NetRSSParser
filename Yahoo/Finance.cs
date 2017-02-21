@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace NetRSSParser.Yahoo
 {
-    public class FinanceRSS
+    public class Finance
     {
         //Variables
         private const string BASE_URL = "http://finance.yahoo.com/rss/headline?s=";
@@ -33,7 +33,7 @@ namespace NetRSSParser.Yahoo
         /// Microsoft's symbol would be 'msft'
         /// </summary>
         /// <param name="CompanySymbol">Based on a company's stock name or symbol. For example, Microsoft's symbol would be 'msft'</param>
-        public FinanceRSS(string CompanySymbol)
+        public Finance(string CompanySymbol)
         {
             this.URL = BASE_URL + CompanySymbol.Trim().ToLower();
             Titles = new List<string>();

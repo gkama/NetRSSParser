@@ -57,7 +57,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleNews\RSS.cs" />
     <Compile Include="RSS.cs" />
-    <Compile Include="Yahoo\FinanceRSS.cs" />
+    <Compile Include="TheGuardian\Audio.cs" />
+    <Compile Include="TheGuardian\ByGategory.cs" />
+    <Compile Include="TheGuardian\Environment.cs" />
+    <Compile Include="TheGuardian\RSS\RSS_URL.cs" />
+    <Compile Include="TheGuardian\Sport.cs" />
+    <Compile Include="TheGuardian\UK.cs" />
+    <Compile Include="TheGuardian\RSS\Item.cs" />
+    <Compile Include="TheGuardian\RSS\RSS.cs" />
+    <Compile Include="TheGuardian\US.cs" />
+    <Compile Include="TheGuardian\World.cs" />
+    <Compile Include="Yahoo\Finance.cs" />
     <Compile Include="Yahoo\StockQuote.cs" />
   </ItemGroup>
   <ItemGroup>
