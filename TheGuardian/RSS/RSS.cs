@@ -97,9 +97,9 @@ namespace NetRSSParser.TheGuardian.RSS
                     string date = rssSubNode != null ? rssSubNode.InnerText : "";
 
                     //Categories
-                    List<string> categories = new List<string>();
+                    List<Item.Category> categories = new List<Item.Category>();
                     foreach (XmlNode c in rssNode.SelectNodes("category"))
-                        categories.Add(c.InnerText.Trim());
+                        categories.Add(new Item.Category(c.Attributes["domain"].Value, c.InnerText.Trim()));
 
                     Titles.Add(title);
                     Links.Add(link);
@@ -118,15 +118,51 @@ namespace NetRSSParser.TheGuardian.RSS
         /// <summary>
         /// Searches data to find items that match the specified category
         /// </summary>
-        /// <param name="Category">Category to be searched for under UK news</param>
-        /// <returns></returns>
+        /// <param name="Category">Category to be searched for</param>
+        /// <returns>Returns a List of Items and their data</returns>
         public List<Item> Search(string Category)
         {
             Category = Category.Trim().ToLower();
             List<Item> toReturn = new List<Item>();
             foreach (Item item in Items)
             {
-                if (item.Categories.ConvertAll(s => s.Trim().ToLower()).Contains(Category) && !toReturn.Contains(item))
+                foreach (Item.Category category in item.Categories)
+                    if (category.Name.Trim().ToLower().Contains(Category) && !toReturn.Contains(item))
+                        toReturn.Add(item);
+            }
+            return toReturn;
+        }
+        /// <summary>
+        /// Searches data to find items that match the specified categories
+        /// </summary>
+        /// <param name="Category">Category to be searched for</param>
+        /// <returns>Returns a List of Items and their data</returns>
+        public List<Item> Search(List<string> Categories)
+        {
+            List<Item> toReturn = new List<Item>();
+            foreach (Item item in Items)
+            {
+                foreach (string Category in Categories)
+                {
+                    foreach (Item.Category category in item.Categories)
+                        if (category.Name.Trim().ToLower().Contains(Category.Trim().ToLower()) && !toReturn.Contains(item))
+                            toReturn.Add(item);
+                }
+            }
+            return toReturn;
+        }
+        /// <summary>
+        /// Searches data to find items that match the specified title
+        /// </summary>
+        /// <param name="Title">Title to be searched for</param>
+        /// <returns>Returns a List of Items and their data</returns>
+        public List<Item> SearchTitle(string Title)
+        {
+            Title = Title.Trim().ToLower();
+            List<Item> toReturn = new List<Item>();
+            foreach (Item item in Items)
+            {
+                if (item.Title.Trim().ToLower().Contains(Title) && !toReturn.Contains(item))
                     toReturn.Add(item);
             }
             return toReturn;
@@ -134,16 +170,15 @@ namespace NetRSSParser.TheGuardian.RSS
         /// <summary>
         /// Searches data to find items that match the specified categories
         /// </summary>
-        /// <param name="Category">Category to be searched for under UK news</param>
-        /// <returns></returns>
-        public List<Item> Search(List<string> Categories)
+        /// <param name="Titles">Titles to be searched for</param>
+        /// <returns>Returns a List of Items and their data</returns>
+        public List<Item> SearchTitle(List<string> Titles)
         {
             List<Item> toReturn = new List<Item>();
             foreach (Item item in Items)
             {
-                foreach (string Category in Categories)
-                    if (item.Categories.ConvertAll(s => s.Trim().ToLower())
-                        .Contains(Category.Trim().ToLower()) && !toReturn.Contains(item))
+                foreach (string title in Titles)
+                    if (item.Title.Trim().ToLower().Contains(title.Trim().ToLower()) && !toReturn.Contains(item))
                         toReturn.Add(item);
             }
             return toReturn;

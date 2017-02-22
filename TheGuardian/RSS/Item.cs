@@ -15,9 +15,9 @@ namespace NetRSSParser.TheGuardian.RSS
         public string PublishedDate { get; set; }
         public string Creator { get; set; }
         public string Date { get; set; }
-        public List<string> Categories { get; set; }
+        public List<Category> Categories { get; set; }
 
-        public Item(string Title, string Link, string Description, string PublishedDate, string Creator, string Date, List<string> Categories)
+        public Item(string Title, string Link, string Description, string PublishedDate, string Creator, string Date, List<Category> Categories)
         {
             this.Title = Title;
             this.Link = Link;
@@ -26,6 +26,19 @@ namespace NetRSSParser.TheGuardian.RSS
             this.Creator = Creator;
             this.Date = Date;
             this.Categories = Categories;
+        }
+
+        //Category
+        public class Category
+        {
+            public string Domain { get; set; }
+            public string Name { get; set; }
+
+            public Category(string Domain, string Name)
+            {
+                this.Domain = Domain;
+                this.Name = Name;
+            }
         }
     }
 }

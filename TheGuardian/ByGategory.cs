@@ -42,5 +42,7 @@ namespace NetRSSParser.TheGuardian
         public List<RSS.Item> Items { get { return rss.Items; } }
         public List<RSS.Item> Search(string Category) { return rss.Search(Category); }
         public List<RSS.Item> Search(List<string> Categories) { return rss.Search(Categories); }
+        public List<RSS.Item> SearchTitle(string Title) { return rss.SearchTitle(Title); }
+        public List<RSS.Item> SearchTitle(List<string> Titles) { return rss.SearchTitle(Titles); }
     }
 }

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6159DDB8-A486-47B2-8442-D3587F8BD0A1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NetRSSParser</RootNamespace>
     <AssemblyName>NetRSSParser</AssemblyName>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -53,10 +56,13 @@
     <Compile Include="GoogleNews\US.cs" />
     <Compile Include="GoogleNews\World.cs" />
     <Compile Include="GoogleNews\TopStories.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleNews\RSS.cs" />
-    <Compile Include="RSS.cs" />
+    <Compile Include="Reddit\ByMultireddit.cs" />
+    <Compile Include="Reddit\BySubreddit.cs" />
+    <Compile Include="Reddit\ByUser.cs" />
+    <Compile Include="Reddit\RSS\Entry.cs" />
+    <Compile Include="Reddit\RSS\RSS.cs" />
     <Compile Include="TheGuardian\Audio.cs" />
     <Compile Include="TheGuardian\ByGategory.cs" />
     <Compile Include="TheGuardian\Environment.cs" />

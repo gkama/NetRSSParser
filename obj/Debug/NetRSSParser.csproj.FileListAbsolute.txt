@@ -1,6 +1,6 @@
-c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\bin\Debug\NetRSSParser.exe.config
-c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\bin\Debug\NetRSSParser.exe
 c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\bin\Debug\NetRSSParser.pdb
 c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\obj\Debug\NetRSSParser.csprojResolveAssemblyReference.cache
-c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\obj\Debug\NetRSSParser.exe
 c:\users\gkam4141\documents\visual studio 2013\Projects\NetRSSParser\NetRSSParser\obj\Debug\NetRSSParser.pdb
+C:\Users\gkam4141\Documents\Visual Studio 2013\Projects\NetRSSParser\NetRSSParser\bin\Debug\NetRSSParser.dll.config
+C:\Users\gkam4141\Documents\Visual Studio 2013\Projects\NetRSSParser\NetRSSParser\bin\Debug\NetRSSParser.dll
+C:\Users\gkam4141\Documents\Visual Studio 2013\Projects\NetRSSParser\NetRSSParser\obj\Debug\NetRSSParser.dll
